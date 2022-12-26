@@ -1,0 +1,49 @@
+
+        @media only screen and (min-width: 768px) {
+
+           
+		    .body-2 {
+		        font-size: clamp(0.88rem, 1.56vw + 0.25rem, 1rem);
+		    }
+		    .body-3 {
+		        font-size: clamp(1.13rem, 0vw + 1.13rem, 1.13rem);
+		    }
+        }
+        
+        
+        @media only screen and (min-width: 1024px) {
+
+           
+		    .body-2 {
+		        font-size: clamp(0.63rem, 1.56vw + 0rem, 0.75rem);
+		    }
+		    .body-3 {
+		        font-size: clamp(0.88rem, 0vw + 0.88rem, 0.88rem);
+		    }
+        }
+        
+        
+        @media only screen and (min-width: 1280px) {
+
+           
+		    .body-2 {
+		        font-size: clamp(1rem, 0.78vw + 0.63rem, 1.13rem);
+		    }
+		    .body-3 {
+		        font-size: clamp(1.13rem, 1.56vw + -0.13rem, 1.38rem);
+		    }
+        }
+        
+        
+        @media only screen and (min-width: 1536px) {
+
+           
+		    .body-2 {
+		        font-size: clamp(0.75rem, 0.78vw + 0.38rem, 0.88rem);
+		    }
+		    .body-3 {
+		        font-size: clamp(0.88rem, 0.78vw + 0.25rem, 1rem);
+		    }
+        }
+        
+        

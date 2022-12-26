@@ -1,27 +1,76 @@
-const fs = require("fs");
+import config from "./config-fluid.json" assert { type: "json" };
+import fs from "fs";
 
-let breakingPoints = [500, 1400, 1024, 1280, 1920];
-let body1 = [20, 56, 18, 20, 24, 30];
+let breakpoints = config.breakingPoints;
+let classesName = Object.keys(config.fluidclasses);
+let classesObject = config.fluidclasses;
 
-// 1. se toma el map y se recorre
-// 2. se guarda el primer valor, y se compara con el siguiente si son diferentes se procede
-// 3. se usa la funcion para generar un clamp -- ESTO LISTO
-// 4. se devuelve envuelto en un mediaquery relacionado con la posicion del primer elemento comparado
-// 5. se repite con el siguiente termino
+function arrayOfClamps(classesName, classesObject, breakingPoints) {
+	let clampArray = [];
+
+	for (let j = 0; j < breakingPoints.length - 1; j++) {
+		for (let i = 0; i < classesName.length; i++) {
+			let minValue = classesObject[classesName[i]][j];
+			let maxValue = classesObject[classesName[i]][j + 1];
+
+			clampArray.push(
+				clampGenerator(
+					minValue,
+					maxValue,
+					breakingPoints[j],
+					breakingPoints[j + 1]
+				)
+			);
+		}
+	}
+
+	return clampArray;
+}
+
+function mqWrapper(clamps, breakpoints, classesName) {
+	console.log(clamps, breakpoints, classesName);
+	let clamp = "";
+	let newClamp;
+	let newClassName;
+
+	// cada 3 elementos pasa al siguiente elemento de la clase de nombre
+
+	for (let i = 1; i < breakpoints.length; i++) {
+		let j = 0;
+		let className = "";
+
+		for (let k = i; k < clampArray.length + 1; k = k + 4) {
+			j = j + 4;
+			newClassName = `
+		    .${classesName[j / 4 - 1]} {
+		        font-size: ${clamps[k - 1]};
+		    }`;
+
+			className = className + newClassName;
+		}
+
+		newClamp = `
+        @media only screen and (min-width: ${breakpoints[i]}px) {
+
+           ${className}
+        }
+        
+        `;
+
+		clamp = clamp + newClamp;
+	}
+	return clamp;
+}
 
 function clampGenerator(minValue, maxValue, minScreen, maxScreen) {
-	if (minValue == maxValue) {
-		console.log(minValue);
-	} else {
-		let [slope, traslation, minValueRem, maxValueRem] = definingValues(
-			minValue,
-			maxValue,
-			minScreen,
-			maxScreen
-		);
+	let [slope, traslation, minValueRem, maxValueRem] = definingValues(
+		minValue,
+		maxValue,
+		minScreen,
+		maxScreen
+	);
 
-		createClamp(minValueRem, slope, traslation, maxValueRem);
-	}
+	return `clamp(${minValueRem}rem, ${slope}vw + ${traslation}rem, ${maxValueRem}rem)`;
 }
 
 function definingValues(minValue, maxValue, minScreen, maxScreen) {
@@ -38,16 +87,14 @@ function definingValues(minValue, maxValue, minScreen, maxScreen) {
 	];
 }
 
-function createClamp(minValue, slope, traslation, maxValue) {
-	console.log(
-		`clamp(${minValue}rem, ${slope}vw + ${traslation}rem, ${maxValue}rem)`
-	);
-}
-
 function createFile(name, content) {
 	fs.writeFile(name, content, () => {
 		"it works";
 	});
 }
 
-clampGenerator(16, 31, 320, 960);
+let clampArray = arrayOfClamps(classesName, classesObject, breakpoints);
+
+let styles = mqWrapper(clampArray, breakpoints, classesName);
+
+createFile("styles.css", styles);
