@@ -1,49 +1,81 @@
+.typo-display-1 {
+	font-size: 8rem;
+}
 
-        @media only screen and (min-width: 768px) {
+.typo-display-2 {
+	font-size: 1.5rem;
+}
 
-           
-		    .body-2 {
-		        font-size: clamp(0.88rem, 1.56vw + 0.25rem, 1rem);
-		    }
-		    .body-3 {
-		        font-size: clamp(1.13rem, 0vw + 1.13rem, 1.13rem);
-		    }
-        }
-        
-        
-        @media only screen and (min-width: 1024px) {
+.typo-heading-1 {
+	font-size: 1.25rem;
+}
 
-           
-		    .body-2 {
-		        font-size: clamp(0.63rem, 1.56vw + 0rem, 0.75rem);
-		    }
-		    .body-3 {
-		        font-size: clamp(0.88rem, 0vw + 0.88rem, 0.88rem);
-		    }
-        }
-        
-        
-        @media only screen and (min-width: 1280px) {
+.typo-heading-2 {
+	font-size: 2.25rem;
+}
 
-           
-		    .body-2 {
-		        font-size: clamp(1rem, 0.78vw + 0.63rem, 1.13rem);
-		    }
-		    .body-3 {
-		        font-size: clamp(1.13rem, 1.56vw + -0.13rem, 1.38rem);
-		    }
-        }
-        
-        
-        @media only screen and (min-width: 1536px) {
+.typo-heading-3 {
+	font-size: 1.5rem;
+}
 
-           
-		    .body-2 {
-		        font-size: clamp(0.75rem, 0.78vw + 0.38rem, 0.88rem);
-		    }
-		    .body-3 {
-		        font-size: clamp(0.88rem, 0.78vw + 0.25rem, 1rem);
-		    }
-        }
-        
-        
+.typo-heading-4 {
+	font-size: 0.875rem;
+}
+
+.typo-body-1 {
+	font-size: 0.75rem;
+}
+
+.typo-body-2 {
+	font-size: 0.625rem;
+}
+
+.typo-body-3 {
+	font-size: 0.625rem;
+}
+
+@media only screen and (min-width: 375px) {
+	.typo-body-3 {
+		font-size: clamp(0.63rem, 0.88vw + 0.42rem, 0.75rem);
+	}
+
+	.typo-body-3 {
+		font-size: clamp(0.75rem, 0.88vw + 0.54rem, 0.88rem);
+	}
+
+	.typo-body-3 {
+		font-size: clamp(0.88rem, 2.65vw + 0.25rem, 1.25rem);
+	}
+
+	.typo-body-3 {
+		font-size: clamp(1.25rem, 1.77vw + 0.84rem, 1.5rem);
+	}
+
+	.typo-body-3 {
+		font-size: clamp(1.5rem, 2.65vw + 0.88rem, 1.88rem);
+	}
+}
+
+@media only screen and (min-width: 601px) {
+	.typo-body-2 {
+		font-size: clamp(0.88rem, 1.2vw + 0.43rem, 1rem);
+	}
+
+	.typo-body-2 {
+		font-size: clamp(1.5rem, 9.58vw + -2.1rem, 2.5rem);
+	}
+
+	.typo-body-2 {
+		font-size: clamp(1.88rem, 5.99vw + -0.37rem, 2.5rem);
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.typo-body-1 {
+		font-size: clamp(0.75rem, 0.78vw + 0.38rem, 0.88rem);
+	}
+
+	.typo-body-1 {
+		font-size: clamp(2.5rem, 3.13vw + 1rem, 3rem);
+	}
+}

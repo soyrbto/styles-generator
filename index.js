@@ -1,64 +1,84 @@
 import config from "./config-fluid.json" assert { type: "json" };
 import fs from "fs";
 
-let breakpoints = config.breakingPoints;
-let classesName = Object.keys(config.fluidclasses);
-let classesObject = config.fluidclasses;
+function objectOfClamps(classesName, classesObject, breakingPoints) {
+	let clampObject = { default: [] };
 
-function arrayOfClamps(classesName, classesObject, breakingPoints) {
-	let clampArray = [];
-
-	for (let j = 0; j < breakingPoints.length - 1; j++) {
-		for (let i = 0; i < classesName.length; i++) {
-			let minValue = classesObject[classesName[i]][j];
-			let maxValue = classesObject[classesName[i]][j + 1];
-
-			clampArray.push(
-				clampGenerator(
-					minValue,
-					maxValue,
-					breakingPoints[j],
-					breakingPoints[j + 1]
-				)
-			);
-		}
+	for (let i = 0; i < breakingPoints.length; i++) {
+		clampObject[breakingPoints[i]] = [];
 	}
 
-	return clampArray;
+	for (let l = 0; l < classesName.length; l++) {
+		clampObject.default.push(classesObject[classesName[l]][0]);
+	}
+
+	for (let k = 0; k < breakingPoints.length; k++) {
+		let minScreen = breakingPoints[k];
+		let maxScreen = breakingPoints[k + 1];
+
+		for (let j = 0; j < classesName.length; j++) {
+			let minValue = classesObject[classesName[j]][k];
+			let maxValue = classesObject[classesName[j]][k + 1];
+
+			if (minValue == maxValue || !maxValue) {
+				clampObject[breakingPoints[k]].push(minValue);
+			} else {
+				clampObject[breakingPoints[k]].push(
+					clampGenerator(minValue, maxValue, minScreen, maxScreen)
+				);
+			}
+		}
+	}
+	return clampObject;
 }
 
-function mqWrapper(clamps, breakpoints, classesName) {
-	console.log(clamps, breakpoints, classesName);
-	let clamp = "";
+function mqWrapper(clampsObject, breakingPoints, classesName) {
+	let newClass;
 	let newClamp;
-	let newClassName;
+	let clamp = "";
+	let className = "";
 
-	// cada 3 elementos pasa al siguiente elemento de la clase de nombre
+	// console.log(classesName);
 
-	for (let i = 1; i < breakpoints.length; i++) {
-		let j = 0;
-		let className = "";
+	for (let j = 0; j < breakingPoints.length; j++) {
+		className = "";
 
-		for (let k = i; k < clampArray.length + 1; k = k + 4) {
-			j = j + 4;
-			newClassName = `
-		    .${classesName[j / 4 - 1]} {
-		        font-size: ${clamps[k - 1]};
-		    }`;
-
-			className = className + newClassName;
+		for (let i = 0; i < classesName.length; i++) {
+			newClass = `
+            .typo-${classesName[j]} {
+                font-size: ${clampsObject[breakingPoints[j]][i]};
+            }
+            `;
+			if (isNaN(clampsObject[breakingPoints[j]][i])) {
+				className = className + newClass;
+			}
 		}
 
-		newClamp = `
-        @media only screen and (min-width: ${breakpoints[i]}px) {
-
-           ${className}
-        }
-        
-        `;
-
-		clamp = clamp + newClamp;
+		console.log(breakingPoints[j]);
+		console.log(className);
+		if (className !== "") {
+			newClamp = `
+            
+@media only screen and (min-width: ${breakingPoints[j]}px) {
+    ${className}
+}
+    
+             `;
+			clamp = clamp + newClamp;
+		} else {
+			clamp = clamp;
+		}
 	}
+
+	for (let k = 0; k < classesName.length; k++) {
+		newClamp = `
+        .typo-${classesName[k]} {
+            font-size: ${clampsObject.default[k] / 16}rem;
+        }
+            `;
+		clamp = newClamp + clamp;
+	}
+
 	return clamp;
 }
 
@@ -93,8 +113,12 @@ function createFile(name, content) {
 	});
 }
 
-let clampArray = arrayOfClamps(classesName, classesObject, breakpoints);
+(function styleGenerator(config) {
+	let breakingPoints = config.breakingPoints;
+	let classesName = Object.keys(config.fluidclasses);
+	let classesObject = config.fluidclasses;
 
-let styles = mqWrapper(clampArray, breakpoints, classesName);
-
-createFile("styles.css", styles);
+	let clampsObject = objectOfClamps(classesName, classesObject, breakingPoints);
+	let styles = mqWrapper(clampsObject, breakingPoints, classesName);
+	createFile("styles.css", styles);
+})(config);
