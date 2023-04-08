@@ -1,81 +1,125 @@
-.typo-display-1 {
-	font-size: 8rem;
-}
 
-.typo-display-2 {
-	font-size: 1.5rem;
+        .typo-display-1 {
+            font-size: 8rem;
+        }
+            
+        .typo-display-2 {
+            font-size: 1.5rem;
+        }
+            
+        .typo-heading-1 {
+            font-size: 1.25rem;
+        }
+            
+        .typo-heading-2 {
+            font-size: 1.5rem;
+        }
+            
+        .typo-heading-3 {
+            font-size: 1rem;
+        }
+            
+        .typo-heading-4 {
+            font-size: 0.875rem;
+        }
+            
+        .typo-number-title {
+            font-size: 1rem;
+        }
+            
+        .typo-number {
+            font-size: 2.25rem;
+        }
+            
+        .typo-body-1 {
+            font-size: 0.75rem;
+        }
+            
+        .typo-body-2 {
+            font-size: 0.625rem;
+        }
+            
+        .typo-body-3 {
+            font-size: 0.625rem;
+        }
+            
+        .typo-body-4 {
+            font-size: 0.75rem;
+        }
+            
+            
+@media only screen and (min-width: 320px) {
+    
+            .typo-heading-3 {
+                font-size: clamp(1rem, 7.2727272727vw + -0.4545454545rem, 1.25rem);
+            }
+            
 }
-
-.typo-heading-1 {
-	font-size: 1.25rem;
-}
-
-.typo-heading-2 {
-	font-size: 2.25rem;
-}
-
-.typo-heading-3 {
-	font-size: 1.5rem;
-}
-
-.typo-heading-4 {
-	font-size: 0.875rem;
-}
-
-.typo-body-1 {
-	font-size: 0.75rem;
-}
-
-.typo-body-2 {
-	font-size: 0.625rem;
-}
-
-.typo-body-3 {
-	font-size: 0.625rem;
-}
-
+    
+             
+            
 @media only screen and (min-width: 375px) {
-	.typo-body-3 {
-		font-size: clamp(0.63rem, 0.88vw + 0.42rem, 0.75rem);
-	}
-
-	.typo-body-3 {
-		font-size: clamp(0.75rem, 0.88vw + 0.54rem, 0.88rem);
-	}
-
-	.typo-body-3 {
-		font-size: clamp(0.88rem, 2.65vw + 0.25rem, 1.25rem);
-	}
-
-	.typo-body-3 {
-		font-size: clamp(1.25rem, 1.77vw + 0.84rem, 1.5rem);
-	}
-
-	.typo-body-3 {
-		font-size: clamp(1.5rem, 2.65vw + 0.88rem, 1.88rem);
-	}
+    
+            .typo-body-2 {
+                font-size: clamp(0.625rem, 0.8849557522vw + 0.4175884956rem, 0.75rem);
+            }
+            
+            .typo-body-1 {
+                font-size: clamp(0.75rem, 1.7699115044vw + 0.3351769912rem, 1rem);
+            }
+            
+            .typo-number {
+                font-size: clamp(2.25rem, 5.3097345133vw + 1.0055309735rem, 3rem);
+            }
+            
+            .typo-number-title {
+                font-size: clamp(1rem, 1.7699115044vw + 0.5851769912rem, 1.25rem);
+            }
+            
+            .typo-heading-4 {
+                font-size: clamp(0.875rem, 2.6548672566vw + 0.2527654867rem, 1.25rem);
+            }
+            
+            .typo-heading-3 {
+                font-size: clamp(1.25rem, 1.7699115044vw + 0.8351769912rem, 1.5rem);
+            }
+            
+            .typo-heading-2 {
+                font-size: clamp(1.5rem, 3.5398230088vw + 0.6703539823rem, 2rem);
+            }
+            
+            .typo-heading-1 {
+                font-size: clamp(1.25rem, 8.8495575221vw + -0.8241150442rem, 2.5rem);
+            }
+            
+            .typo-display-2 {
+                font-size: clamp(1.5rem, 2.6548672566vw + 0.8777654867rem, 1.875rem);
+            }
+            
 }
-
+    
+             
+            
 @media only screen and (min-width: 601px) {
-	.typo-body-2 {
-		font-size: clamp(0.88rem, 1.2vw + 0.43rem, 1rem);
-	}
-
-	.typo-body-2 {
-		font-size: clamp(1.5rem, 9.58vw + -2.1rem, 2.5rem);
-	}
-
-	.typo-body-2 {
-		font-size: clamp(1.88rem, 5.99vw + -0.37rem, 2.5rem);
-	}
+    
+            .typo-display-2 {
+                font-size: clamp(1.875rem, 5.9880239521vw + -0.374251497rem, 2.5rem);
+            }
+            
 }
-
+    
+             
+            
 @media only screen and (min-width: 768px) {
-	.typo-body-1 {
-		font-size: clamp(0.75rem, 0.78vw + 0.38rem, 0.88rem);
-	}
-
-	.typo-body-1 {
-		font-size: clamp(2.5rem, 3.13vw + 1rem, 3rem);
-	}
+    
+            .typo-body-2 {
+                font-size: clamp(0.75rem, 0.78125vw + 0.375rem, 0.875rem);
+            }
+            
+            .typo-display-2 {
+                font-size: clamp(2.5rem, 3.125vw + 1rem, 3rem);
+            }
+            
 }
+    
+             

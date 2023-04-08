@@ -38,14 +38,12 @@ function mqWrapper(clampsObject, breakingPoints, classesName) {
 	let clamp = "";
 	let className = "";
 
-	// console.log(classesName);
-
 	for (let j = 0; j < breakingPoints.length; j++) {
 		className = "";
 
 		for (let i = 0; i < classesName.length; i++) {
 			newClass = `
-            .typo-${classesName[j]} {
+            .typo-${classesName[i]} {
                 font-size: ${clampsObject[breakingPoints[j]][i]};
             }
             `;
@@ -54,8 +52,6 @@ function mqWrapper(clampsObject, breakingPoints, classesName) {
 			}
 		}
 
-		console.log(breakingPoints[j]);
-		console.log(className);
 		if (className !== "") {
 			newClamp = `
             
@@ -100,10 +96,10 @@ function definingValues(minValue, maxValue, minScreen, maxScreen) {
 		(minScreen * maxValue - maxScreen * minValue) / (minScreen - maxScreen);
 
 	return [
-		Number(slope.toFixed(2)),
-		Number((traslation / rootValue).toFixed(2)),
-		Number((minValue / rootValue).toFixed(2)),
-		Number((maxValue / rootValue).toFixed(2)),
+		Number(slope.toFixed(10)),
+		Number((traslation / rootValue).toFixed(10)),
+		Number((minValue / rootValue).toFixed(10)),
+		Number((maxValue / rootValue).toFixed(10)),
 	];
 }
 
